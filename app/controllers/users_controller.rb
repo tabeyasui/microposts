@@ -31,6 +31,11 @@ class UsersController < ApplicationController
     logged_in_user
     @user = User.find(params[:id])
     
+    if @user != current_user
+      flash[:danger] = "Please log in."
+      redirect_to login_url
+    end
+    
     if @user.update(user_params)
       # 保存に成功した場合はトップページへリダイレクト
       redirect_to user_path(@user) , notice: 'ユーザー情報を編集しました'
