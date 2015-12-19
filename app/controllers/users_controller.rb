@@ -23,8 +23,8 @@ class UsersController < ApplicationController
     logged_in_user
     @user = User.find(params[:id])
     if @user != current_user
-      flash[:danger] = "Please log in."
-      redirect_to login_url
+      flash[:danger] = "不正なアクセス！"
+      redirect_to root_path
     end
   end
   
@@ -33,8 +33,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     
     if @user != current_user
-      flash[:danger] = "Please log in."
-      redirect_to login_url
+      flash[:danger] = "不正なアクセス！"
+      redirect_to root_path
     end
     
     if @user.update(user_params)
